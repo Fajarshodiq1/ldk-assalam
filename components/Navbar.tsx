@@ -5,19 +5,21 @@ import { usePathname } from "next/navigation";
 import {
   ArrowUpRight,
   Home,
+  Info,
   Grid,
-  GitCommit,
-  Users,
+  Image as ImageIcon,
+  HelpCircle,
   Phone,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
 const navItems = [
-  { name: "Beranda", href: "/", icon: Home },
-  { name: "Bidang", href: "/bidang", icon: Grid },
-  { name: "Alur", href: "/alur", icon: GitCommit },
-  { name: "Struktur", href: "/struktur", icon: Users },
-  { name: "Kontak", href: "/kontak", icon: Phone },
+  { name: "Beranda", href: "/#beranda", icon: Home },
+  { name: "About", href: "/#about", icon: Info },
+  { name: "Bidang", href: "/#bidang", icon: Grid },
+  { name: "Gallery", href: "/#galeri", icon: ImageIcon },
+  { name: "FAQ", href: "/#faq", icon: HelpCircle },
+  { name: "Kontak", href: "/#kontak", icon: Phone },
 ];
 
 export default function Navbar() {
@@ -36,9 +38,6 @@ export default function Navbar() {
           >
             {/* Logo / Brand */}
             <Link href="/" className="flex items-center gap-2.5">
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-neutral-900 font-semibold text-white text-[11px] tracking-tight">
-                AS
-              </div>
               <span className="font-semibold text-neutral-900 text-sm tracking-tight">
                 LDK As-Salam
               </span>
@@ -54,7 +53,7 @@ export default function Navbar() {
                   <li key={item.name} className="relative">
                     <Link
                       href={item.href}
-                      className={`relative z-10 flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium transition-colors ${
+                      className={`relative z-10 flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-colors ${
                         isActive
                           ? "text-neutral-900 font-semibold"
                           : "text-neutral-500 hover:text-neutral-900"
@@ -63,7 +62,7 @@ export default function Navbar() {
                       <Icon
                         size={14}
                         className={
-                          isActive ? "text-emerald-600" : "text-neutral-400"
+                          isActive ? "text-violet-600" : "text-neutral-400"
                         }
                       />
                       {item.name}
@@ -93,7 +92,7 @@ export default function Navbar() {
                 whileTap={{ scale: 0.98 }}
               >
                 <Link
-                  href="/daftar"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLScYfAOvyqzBDu4o1FEVgGLdYxJ74wr5_k25gyVWFzOskh3bvg/viewform"
                   className="flex items-center gap-1.5 bg-neutral-900 text-white px-4 py-1.5 rounded-full text-xs font-medium transition-all hover:bg-neutral-800 shadow-2xs"
                 >
                   <span>Gabung</span>
@@ -121,7 +120,7 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`relative flex flex-col items-center justify-center py-2 px-3 rounded-2xl text-[10px] font-medium transition-all ${
+                className={`relative flex flex-col items-center justify-center py-2 px-2.5 rounded-2xl text-[10px] font-medium transition-all ${
                   isActive
                     ? "text-neutral-900 font-semibold"
                     : "text-neutral-400 hover:text-neutral-600"
@@ -131,7 +130,7 @@ export default function Navbar() {
                 {isActive && (
                   <motion.div
                     layoutId="active-pill-mobile"
-                    className="absolute inset-0 bg-emerald-50 border border-emerald-200/60 rounded-2xl -z-0"
+                    className="absolute inset-0 bg-violet-50 border border-violet-200/60 rounded-2xl -z-0"
                     transition={{
                       type: "spring",
                       stiffness: 400,
@@ -142,9 +141,9 @@ export default function Navbar() {
 
                 <div className="relative z-10 flex flex-col items-center gap-1">
                   <Icon
-                    size={18}
+                    size={16}
                     className={
-                      isActive ? "text-emerald-600" : "text-neutral-400"
+                      isActive ? "text-violet-600" : "text-neutral-400"
                     }
                   />
                   <span>{item.name}</span>

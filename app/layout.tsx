@@ -31,9 +31,6 @@ export default function RootLayout({
 
         {/* Konten Halaman (Flex grow agar footer selalu terdorong ke bawah jika konten pendek) */}
         <div className="flex-1">{children}</div>
-
-        {/* Footer Global */}
-        <FooterSection />
       </body>
     </html>
   );

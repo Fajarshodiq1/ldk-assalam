@@ -3,12 +3,15 @@
 import React from "react";
 import { Timeline } from "@/components/ui/timeline";
 import {
-  CheckCircle2,
   UserCheck,
   Sparkles,
-  Compass,
   Rocket,
+  CheckCircle2,
+  ArrowRight,
 } from "lucide-react";
+import regisImg from "@/public/regis.png";
+import keluargaImg from "@/public/keluarga.jpg";
+import welcomeImg from "@/public/welcome.jpg";
 
 export default function TimelineSection() {
   const data = [
@@ -17,25 +20,37 @@ export default function TimelineSection() {
       content: (
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <UserCheck className="w-5 h-5 text-emerald-600" />
-            <h3 className="text-lg font-semibold text-neutral-900">
+            <UserCheck className="w-5 h-5 text-violet-400" />
+            <h3 className="text-lg font-bold text-white font-syne">
               Isi Formulir Online
             </h3>
           </div>
-          <p className="mb-6 text-xs font-normal text-neutral-600 md:text-sm leading-relaxed max-w-xl">
-            Klik tombol pendaftaran, isi data diri singkat, dan pilih minat
-            divisi kamu. Prosesnya cuma butuh waktu 1–3 menit tanpa ribet.
+          <p className="mb-5 text-xs font-normal text-white/70 md:text-sm leading-relaxed max-w-xl font-inter">
+            Klik tombol di bawah ini, isi data diri singkat, dan pilih minat
+            divisi kamu. Prosesnya cuma butuh waktu 1–3 menit tanpa ribet!
           </p>
+
+          {/* Tombol Pendaftaran dipindah ke Langkah 01 */}
+          <div className="mb-6">
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLScYfAOvyqzBDu4o1FEVgGLdYxJ74wr5_k25gyVWFzOskh3bvg/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-[#7b38f7] hover:bg-[#6c2ee2] text-white px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-bold shadow-xl transition-all group"
+            >
+              <span>Daftar Sekarang via Google Form</span>
+              <ArrowRight
+                size={16}
+                className="transition-transform group-hover:translate-x-1"
+              />
+            </a>
+          </div>
+
           <div className="grid grid-cols-2 gap-4">
             <img
-              src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop"
+              src={regisImg.src}
               alt="Pengisian Form"
-              className="h-28 w-full rounded-2xl object-cover border border-black/[0.08] shadow-2xs md:h-44 lg:h-52"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop"
-              alt="Diskusi Pendaftaran"
-              className="h-28 w-full rounded-2xl object-cover border border-black/[0.08] shadow-2xs md:h-44 lg:h-52"
+              className="h-28 w-full rounded-2xl object-cover border border-white/15 shadow-xl md:h-44 lg:h-52 opacity-85"
             />
           </div>
         </div>
@@ -46,26 +61,30 @@ export default function TimelineSection() {
       content: (
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <Sparkles className="w-5 h-5 text-emerald-600" />
-            <h3 className="text-lg font-semibold text-neutral-900">
-              Welcome Gathering
+            <Sparkles className="w-5 h-5 text-violet-400" />
+            <h3 className="text-lg font-bold text-white font-syne">
+              Welcome Gathering & Upgrading
             </h3>
           </div>
-          <p className="mb-6 text-xs font-normal text-neutral-600 md:text-sm leading-relaxed max-w-xl">
-            Sesi kumpul perdana bareng sesama kader baru dan kakak tingkat.
-            Acara dikemas santai, ada sesi kenalan, ice breaking, dan snack
-            gratis.
+          <p className="mb-4 text-xs font-normal text-white/70 md:text-sm leading-relaxed max-w-xl font-inter">
+            Sesi kumpul perdana, pelatihan soft skill, serta perkenalan hangat
+            bareng sesama kader baru dan pengurus.
           </p>
+          <div className="mb-6 space-y-2">
+            <div className="flex items-center gap-2 text-xs text-white/80 md:text-sm font-inter">
+              <CheckCircle2 className="w-4 h-4 text-violet-400 shrink-0" />
+              <span>Sesi kenalan, ice breaking, & kebersamaan</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs text-white/80 md:text-sm font-inter">
+              <CheckCircle2 className="w-4 h-4 text-violet-400 shrink-0" />
+              <span>Pelatihan dasar kepemimpinan & organisasi</span>
+            </div>
+          </div>
           <div className="grid grid-cols-2 gap-4">
             <img
-              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop"
+              src={welcomeImg.src}
               alt="Gathering Perdana"
-              className="h-28 w-full rounded-2xl object-cover border border-black/[0.08] shadow-2xs md:h-44 lg:h-52"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800&auto=format&fit=crop"
-              alt="Suasana Acara"
-              className="h-28 w-full rounded-2xl object-cover border border-black/[0.08] shadow-2xs md:h-44 lg:h-52"
+              className="h-28 w-full rounded-2xl object-cover border border-white/15 shadow-xl md:h-44 lg:h-52 opacity-85"
             />
           </div>
         </div>
@@ -76,68 +95,20 @@ export default function TimelineSection() {
       content: (
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <Compass className="w-5 h-5 text-emerald-600" />
-            <h3 className="text-lg font-semibold text-neutral-900">
-              Upgrading & Fun Camp
-            </h3>
-          </div>
-          <p className="mb-6 text-xs font-normal text-neutral-600 md:text-sm leading-relaxed max-w-xl">
-            Pelatihan soft skill, kepemimpinan, dan kegiatan bonding outdoor
-            buat mempererat rasa kekeluargaan antar-kader.
-          </p>
-          <div className="mb-6 space-y-2">
-            <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>Pelatihan Public Speaking & Leadership</span>
-            </div>
-            <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>Sesi Outbound & Rihla Alam</span>
-            </div>
-            <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>Mentoring Akademik & Karir</span>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <img
-              src="https://images.unsplash.com/photo-1526976668912-1a811878dd37?q=80&w=800&auto=format&fit=crop"
-              alt="Outbound Fun Camp"
-              className="h-28 w-full rounded-2xl object-cover border border-black/[0.08] shadow-2xs md:h-44 lg:h-52"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=800&auto=format&fit=crop"
-              alt="Pelatihan Kepemimpinan"
-              className="h-28 w-full rounded-2xl object-cover border border-black/[0.08] shadow-2xs md:h-44 lg:h-52"
-            />
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "Langkah 04",
-      content: (
-        <div>
-          <div className="flex items-center gap-2 mb-3">
-            <Rocket className="w-5 h-5 text-emerald-600" />
-            <h3 className="text-lg font-semibold text-neutral-900">
+            <Rocket className="w-5 h-5 text-violet-400" />
+            <h3 className="text-lg font-bold text-white font-syne">
               Resmi Jadi Kader & Eksekusi Proyek
             </h3>
           </div>
-          <p className="mb-6 text-xs font-normal text-neutral-600 md:text-sm leading-relaxed max-w-xl">
-            Kamu resmi menjadi bagian dari LDK As-Salam dan siap berkontribusi
-            langsung sesuai divisi minat yang kamu pilih.
+          <p className="mb-6 text-xs font-normal text-white/70 md:text-sm leading-relaxed max-w-xl font-inter">
+            Kamu resmi menjadi bagian dari keluarga besar LDK As-Salam dan siap
+            berkontribusi aktif di divisi pilihanmu.
           </p>
           <div className="grid grid-cols-2 gap-4">
             <img
-              src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop"
+              src={keluargaImg.src}
               alt="Kerja Tim Divisi"
-              className="h-28 w-full rounded-2xl object-cover border border-black/[0.08] shadow-2xs md:h-44 lg:h-52"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=800&auto=format&fit=crop"
-              alt="Official Member"
-              className="h-28 w-full rounded-2xl object-cover border border-black/[0.08] shadow-2xs md:h-44 lg:h-52"
+              className="h-28 w-full rounded-2xl object-center border border-white/15 shadow-xl md:h-44 lg:h-72 opacity-85"
             />
           </div>
         </div>
@@ -148,7 +119,7 @@ export default function TimelineSection() {
   return (
     <section
       id="alur"
-      className="w-full bg-white font-sans border-t border-black/[0.06]"
+      className="w-full bg-[#121212] font-sans border-t border-white/10 relative overflow-hidden text-white"
     >
       <div className="relative w-full overflow-clip">
         <Timeline data={data} />

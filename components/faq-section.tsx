@@ -7,8 +7,9 @@ import {
   ChevronDown,
   CheckCircle2,
   XCircle,
-  Sparkles,
+  Sparkle,
 } from "lucide-react";
+import { BackgroundBeams } from "./ui/background-beams";
 
 // Data Mitos vs Fakta
 const mythsAndFacts = [
@@ -54,50 +55,79 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-white border-t border-black/[0.06] text-neutral-900 font-sans">
-      <div className="max-w-7xl mx-auto px-5 md:px-12 space-y-20">
+    <section
+      className="py-20 sm:py-28 md:py-36 bg-violet-900 text-white font-sans relative overflow-hidden"
+      id="faq"
+    >
+      {/* Background Beams Effect */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+        <BackgroundBeams />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 space-y-24 sm:space-y-32 relative z-10">
         {/* ================= SECTION 1: MITOS VS FAKTA ================= */}
-        <div className="space-y-10">
-          <div className="max-w-xl space-y-3">
-            <div className="inline-flex items-center gap-1.5 bg-emerald-50 border border-emerald-200/60 text-emerald-800 px-3 py-1 rounded-full text-xs font-medium">
-              <Sparkles size={13} className="text-emerald-600" />
-              Luruskan Persepsi
+        <div className="space-y-12 sm:space-y-16">
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
+            <div className="space-y-3 sm:space-y-4 max-w-2xl">
+              <div className="inline-flex items-center gap-1.5 bg-[#121212] backdrop-blur-md border border-white/20 text-white px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-medium tracking-wide">
+                <Sparkle
+                  size={12}
+                  className="text-white fill-white animate-pulse"
+                />
+                <span>Luruskan Persepsi</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-[1.15] font-syne">
+                Masih Ragu Buat Gabung? Yuk Cek Ini Dulu
+              </h2>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-neutral-900">
-              Masih Ragu Buat Gabung? Yuk Cek Ini Dulu
-            </h2>
-            <p className="text-neutral-500 text-sm leading-relaxed">
+            <p className="text-white/80 text-xs sm:text-sm md:text-base max-w-md leading-relaxed font-inter">
               Banyak stigma negatif atau ketakutan maba soal LDK yang sebenarnya
               cuma mitos belaka.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {mythsAndFacts.map((item, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className="bg-slate-50 border border-black/[0.06] rounded-3xl p-6 flex flex-col justify-between hover:border-black/15 transition-all space-y-6"
+                className="bg-[#121212] border border-white/15 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all space-y-6 shadow-2xl relative overflow-hidden group"
               >
+                {/* Efek Hover: Gelembung Air Menyatu ke Tengah */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl">
+                  <span className="absolute top-1/2 -left-[10%] -translate-y-1/2 w-[65%] h-[220%] bg-white rounded-[100%] scale-0 group-hover:scale-100 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] origin-left z-0" />
+                  <span className="absolute top-1/2 -right-[10%] -translate-y-1/2 w-[65%] h-[220%] bg-white rounded-[100%] scale-0 group-hover:scale-100 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] origin-right z-0" />
+                </div>
+
                 {/* Myth Box */}
-                <div className="space-y-2.5 pb-5 border-b border-black/[0.06]">
-                  <div className="inline-flex items-center gap-1.5 text-rose-600 text-xs font-semibold bg-rose-50 border border-rose-200/60 px-2.5 py-0.5 rounded-md">
-                    <XCircle size={14} /> Mitos
+                <div className="space-y-3 pb-6 border-b border-white/15 group-hover:border-black/15 transition-colors duration-300 relative z-10">
+                  <div className="inline-flex items-center gap-1.5 text-rose-300 text-xs font-semibold bg-rose-950/80 border border-rose-500/40 px-3 py-1 rounded-md group-hover:bg-black/10 group-hover:text-rose-700 group-hover:border-rose-700/30 transition-colors">
+                    <XCircle
+                      size={14}
+                      className="text-rose-400 group-hover:text-rose-700"
+                    />{" "}
+                    Mitos 0{idx + 1}
                   </div>
-                  <p className="text-xs sm:text-sm font-medium text-neutral-800 leading-snug">
+                  <p className="text-xs sm:text-sm font-semibold text-white/90 leading-snug font-inter group-hover:text-neutral-900 transition-colors">
                     "{item.myth}"
                   </p>
                 </div>
 
                 {/* Fact Box */}
-                <div className="space-y-2.5 pt-1">
-                  <div className="inline-flex items-center gap-1.5 text-emerald-700 text-xs font-semibold bg-emerald-100/60 border border-emerald-200/60 px-2.5 py-0.5 rounded-md">
-                    <CheckCircle2 size={14} /> Fakta
+                <div className="space-y-2.5 pt-1 relative z-10">
+                  <div className="inline-flex items-center gap-1.5 text-emerald-300 text-xs font-semibold bg-emerald-950/80 border border-emerald-500/40 px-3 py-1 rounded-md group-hover:bg-black/10 group-hover:text-emerald-800 group-hover:border-emerald-700/30 transition-colors">
+                    <CheckCircle2
+                      size={14}
+                      className="text-emerald-400 group-hover:text-emerald-800"
+                    />{" "}
+                    Fakta LDK
                   </div>
-                  <p className="text-xs text-neutral-600 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-inter group-hover:text-neutral-800 transition-colors">
                     {item.fact}
                   </p>
                 </div>
@@ -107,40 +137,51 @@ export default function FAQSection() {
         </div>
 
         {/* ================= SECTION 2: ACCORDION FAQ ================= */}
-        <div className="pt-10 border-t border-black/[0.06] grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          <div className="lg:col-span-5 space-y-4">
-            <div className="inline-flex items-center gap-1.5 bg-slate-100 border border-black/[0.08] text-neutral-800 px-3 py-1 rounded-full text-xs font-medium">
-              <HelpCircle size={14} className="text-neutral-600" />
-              Tanya Jawab
+        <div className="pt-16 sm:pt-20 border-t border-white/20 grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-14 items-start">
+          {/* Left Column (Sticky Title & Desc) */}
+          <div className="lg:col-span-5 space-y-4 lg:sticky lg:top-28">
+            <div className="inline-flex items-center gap-1.5 bg-[#121212] backdrop-blur-md border border-white/20 text-white px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-medium tracking-wide">
+              <HelpCircle size={13} className="text-white" />
+              <span>Tanya Jawab</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-neutral-900 leading-tight">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold font-syne tracking-tight text-white leading-tight">
               Pertanyaan yang Sering Ditanyakan (FAQ)
             </h3>
-            <p className="text-neutral-500 text-xs sm:text-sm leading-relaxed">
+            <p className="text-white/80 text-xs sm:text-sm leading-relaxed font-inter max-w-md">
               Punya pertanyaan seputar keanggotaan atau pendaftaran? Temukan
-              jawabannya di sini atau langsung hubungi kami via WhatsApp.
+              jawabannya di sini atau langsung hubungi kami melalui narahubung
+              resmi.
             </p>
           </div>
 
-          <div className="lg:col-span-7 space-y-3">
+          {/* Right Column (Accordion List) */}
+          <div className="lg:col-span-7 space-y-4">
             {faqs.map((faq, idx) => {
               const isOpen = openFaq === idx;
               return (
                 <div
                   key={idx}
-                  className="bg-slate-50 border border-black/[0.06] rounded-2xl overflow-hidden transition-colors"
+                  className="bg-[#121212] border border-white/15 rounded-3xl overflow-hidden transition-all shadow-xl relative group"
                 >
+                  {/* Efek Hover: Gelembung Air Menyatu ke Tengah */}
+                  <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl">
+                    <span className="absolute top-1/2 -left-[10%] -translate-y-1/2 w-[65%] h-[220%] bg-white rounded-[100%] scale-0 group-hover:scale-100 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] origin-left z-0" />
+                    <span className="absolute top-1/2 -right-[10%] -translate-y-1/2 w-[65%] h-[220%] bg-white rounded-[100%] scale-0 group-hover:scale-100 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] origin-right z-0" />
+                  </div>
+
                   <button
                     onClick={() => toggleFaq(idx)}
-                    className="w-full text-left p-5 flex items-center justify-between gap-4 font-medium text-xs sm:text-sm text-neutral-900 hover:text-emerald-700 transition-colors"
+                    className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 font-bold text-xs sm:text-sm md:text-base text-white group-hover:text-neutral-900 transition-colors font-syne relative z-10"
                   >
                     <span>{faq.q}</span>
-                    <ChevronDown
-                      size={16}
-                      className={`text-neutral-400 shrink-0 transition-transform duration-300 ${
-                        isOpen ? "rotate-180 text-emerald-600" : ""
-                      }`}
-                    />
+                    <div className="w-8 h-8 rounded-full bg-white/10 group-hover:bg-[#121212]/10 flex items-center justify-center shrink-0 transition-colors">
+                      <ChevronDown
+                        size={16}
+                        className={`text-white group-hover:text-neutral-900 transition-transform duration-300 ${
+                          isOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </div>
                   </button>
 
                   <AnimatePresence>
@@ -149,10 +190,10 @@ export default function FAQSection() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.25 }}
-                        className="overflow-hidden"
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
+                        className="overflow-hidden relative z-10"
                       >
-                        <div className="px-5 pb-5 pt-1 text-xs text-neutral-600 border-t border-black/[0.04] leading-relaxed">
+                        <div className="px-5 sm:px-6 pb-6 pt-2 text-xs sm:text-sm text-white/80 group-hover:text-neutral-800 border-t border-white/15 group-hover:border-black/15 transition-colors leading-relaxed font-inter">
                           {faq.a}
                         </div>
                       </motion.div>

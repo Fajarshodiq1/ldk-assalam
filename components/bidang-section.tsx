@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence, PanInfo } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   TrendingUp,
   Megaphone,
@@ -9,9 +9,7 @@ import {
   Users2,
   BookOpen,
   Sparkle,
-  ArrowUpRight,
-  ChevronLeft,
-  ChevronRight,
+  ArrowRight,
   GraduationCap,
   Trophy,
   Coins,
@@ -25,6 +23,7 @@ import {
   Heart,
   Briefcase,
 } from "lucide-react";
+import { BackgroundBeams } from "./ui/background-beams";
 
 const bidangData = [
   {
@@ -33,6 +32,7 @@ const bidangData = [
     shortName: "FEST (FoSSEI)",
     icon: TrendingUp,
     badge: "Otonom & Keilmuan",
+    tagline: "Pusat Riset & Kajian Ekonomi Islam",
     description:
       "Divisi keilmuan yang berfokus pada pengembangan kajian, edukasi, dan riset ekonomi Islam di Universitas Trilogi, serta berjejaring secara nasional di bawah naungan FoSSEI.",
     jobdesk: [
@@ -59,6 +59,7 @@ const bidangData = [
     shortName: "Kaderisasi",
     icon: Users2,
     badge: "Pilar Utama",
+    tagline: "Jantung Pergerakan & Pembinaan Anggota",
     description:
       "Jantung pergerakan organisasi yang bertanggung jawab atas rekrutmen, pembinaan internal, serta pemetaan potensi kader LDK As-Salam secara terstruktur.",
     jobdesk: [
@@ -85,6 +86,7 @@ const bidangData = [
     shortName: "Syiar & Keumatan",
     icon: HeartHandshake,
     badge: "Pengabdian & Dakwah",
+    tagline: "Garda Depan Syiar & Aksi Sosial Kampus",
     description:
       "Garda depan penggerak suasana islami di kampus melalui kegiatan syiar kreatif, peringatan hari besar Islam, serta program pengabdian masyarakat.",
     jobdesk: [
@@ -111,6 +113,7 @@ const bidangData = [
     shortName: "Media",
     icon: Megaphone,
     badge: "Kreatif & Informasi",
+    tagline: "Pusat Publikasi & Kreativitas Visual",
     description:
       "Pusat informasi dan publikasi kreatif yang mengemas pesan dakwah serta dokumentasi kegiatan organisasi ke dalam bentuk konten visual modern.",
     jobdesk: [
@@ -137,6 +140,7 @@ const bidangData = [
     shortName: "Kemuslimahan",
     icon: BookOpen,
     badge: "Khusus Akhwat",
+    tagline: "Ruang Hangat & Pemberdayaan Mahasiswi",
     description:
       "Wadah pembinaan, pemberdayaan, dan ruang diskusi hangat yang dirancang khusus untuk memfasilitasi kebutuhan serta potensi mahasiswi muslimah.",
     jobdesk: [
@@ -161,214 +165,177 @@ const bidangData = [
 
 export default function BidangSection() {
   const [activeTab, setActiveTab] = useState(bidangData[0].id);
-  const [carouselIndex, setCarouselIndex] = useState(0);
 
   const activeBidang =
     bidangData.find((b) => b.id === activeTab) || bidangData[0];
 
-  const handleTabChange = (id: string) => {
-    setActiveTab(id);
-    setCarouselIndex(0);
-  };
-
-  const handleNext = () => {
-    setCarouselIndex((prev) => (prev + 1) % activeBidang.jobdesk.length);
-  };
-
-  const handlePrev = () => {
-    setCarouselIndex((prev) =>
-      prev === 0 ? activeBidang.jobdesk.length - 1 : prev - 1,
-    );
-  };
-
-  // Handler swipe gesture khusus mobile
-  const handleDragEnd = (_: any, info: PanInfo) => {
-    if (info.offset.x < -50) {
-      handleNext();
-    } else if (info.offset.x > 50) {
-      handlePrev();
-    }
-  };
-
-  const currentJob = activeBidang.jobdesk[carouselIndex];
-  const JobIcon = currentJob.icon;
-
   return (
     <section
       id="bidang"
-      className="py-12 sm:py-20 md:py-28 bg-white text-neutral-900 font-sans relative overflow-hidden"
+      className="py-16 sm:py-24 md:py-32 bg-violet-900 text-white font-sans relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
-        {/* Header Section */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4 sm:gap-6">
-          <div className="space-y-2.5 sm:space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-1.5 bg-slate-100 border border-black/[0.06] text-neutral-800 px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium">
-              <Sparkle size={13} className="text-emerald-600" />
-              <span>Divisi & Struktur</span>
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <BackgroundBeams />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 relative z-10">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-16 gap-4 sm:gap-6">
+          <div className="space-y-3 sm:space-y-4 max-w-2xl">
+            <div className="inline-flex items-center gap-1.5 bg-black/25 backdrop-blur-md border border-white/20 text-white px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-medium tracking-wide">
+              <Sparkle
+                size={12}
+                className="text-white fill-white animate-pulse"
+              />
+              <span>Struktur & Divisi Organisasi</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-neutral-900 leading-[1.2]">
-              Ruang Kontribusi LDK As-Salam
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-[1.15]">
+              Pilih Ruang Kontribusi Anda
             </h2>
           </div>
-          <p className="text-neutral-500 text-xs sm:text-sm max-w-md leading-relaxed">
-            Setiap divisi memiliki fokus peran dan tugas spesifik untuk
-            mendukung pengembangan skill serta ruang pengabdian kamu di kampus.
+          <p className="text-white/80 text-xs sm:text-sm md:text-base max-w-md leading-relaxed font-inter">
+            Temukan bidang yang selaras dengan minat, keahlian, dan visi
+            pengembangan diri Anda di LDK As-Salam.
           </p>
         </div>
 
-        {/* Tab Navigation dengan Horizontal Scroll Overlay untuk Mobile */}
-        <div className="relative mb-6 sm:mb-8">
-          <div className="flex items-center gap-2 overflow-x-auto pb-3 sm:pb-4 scrollbar-none border-b border-neutral-100 scroll-smooth">
-            {bidangData.map((bidang) => {
-              const isActive = activeTab === bidang.id;
-              return (
-                <button
-                  key={bidang.id}
-                  onClick={() => handleTabChange(bidang.id)}
-                  className={`relative px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full text-xs font-medium transition-all whitespace-nowrap shrink-0 active:scale-95 ${
-                    isActive
-                      ? "text-white"
-                      : "text-neutral-600 hover:text-neutral-900 hover:bg-slate-100"
-                  }`}
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeTabBadge"
-                      className="absolute inset-0 bg-neutral-900 rounded-full"
-                      transition={{
-                        type: "spring",
-                        duration: 0.5,
-                        bounce: 0.15,
-                      }}
-                    />
-                  )}
-                  <span className="relative z-10">{bidang.shortName}</span>
-                </button>
-              );
-            })}
-          </div>
+        {/* Minimalist Interactive Navigation Bar */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-8 sm:mb-12 no-scrollbar border-b border-white/20">
+          {bidangData.map((bidang, index) => {
+            const isActive = activeTab === bidang.id;
+            return (
+              <button
+                key={bidang.id}
+                onClick={() => setActiveTab(bidang.id)}
+                className={`relative px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl text-xs sm:text-sm font-medium transition-all whitespace-nowrap shrink-0 group ${
+                  isActive
+                    ? "text-white"
+                    : "text-white/70 hover:text-white hover:bg-black/10"
+                }`}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeEditorialTab"
+                    className="absolute inset-0 bg-black backdrop-blur-xl border border-white/25 rounded-2xl shadow-xl"
+                    transition={{
+                      type: "spring",
+                      stiffness: 450,
+                      damping: 35,
+                    }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-2 font-syne">
+                  <span
+                    className={`text-[10px] ${isActive ? "text-white" : "text-white/50"}`}
+                  >
+                    0{index + 1}
+                  </span>
+                  {bidang.shortName}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Active Tab Content Card */}
+        {/* Main Content Editorial Layout */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeBidang.id}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.3 }}
-            className="bg-slate-50 border border-neutral-200/80 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 shadow-xs grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch"
+            initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: -16, filter: "blur(4px)" }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch"
           >
-            {/* Left Description */}
-            {/* Left Description */}
-            <div className="lg:col-span-6 space-y-4 sm:space-y-6 flex flex-col justify-between">
-              <div className="space-y-3 sm:space-y-4">
-                <div className="space-y-1.5">
-                  {/* Badge Kategori */}
-                  <span className="text-[10px] sm:text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-2.5 py-0.5 rounded-full inline-block">
+            {/* Left Big Info Card (Span 5) */}
+            <div className="lg:col-span-5 bg-black border border-white/15 rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col justify-between shadow-2xl relative overflow-hidden group">
+              {/* Layer Efek Hover: Gelembung Air Menyatu ke Tengah */}
+              <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl">
+                <span className="absolute top-1/2 -left-[10%] -translate-y-1/2 w-[65%] h-[220%] bg-white rounded-[100%] scale-0 group-hover:scale-100 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] origin-left z-0" />
+                <span className="absolute top-1/2 -right-[10%] -translate-y-1/2 w-[65%] h-[220%] bg-white rounded-[100%] scale-0 group-hover:scale-100 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] origin-right z-0" />
+              </div>
+
+              <div className="space-y-4 sm:space-y-6 relative z-10">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] sm:text-xs font-semibold text-white bg-white/10 border border-white/20 px-3 py-1 rounded-full backdrop-blur-md group-hover:bg-black/10 group-hover:text-black group-hover:border-black/20 transition-colors">
                     {activeBidang.badge}
                   </span>
-                  {/* Judul Divisi tanpa Ikon */}
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tight text-neutral-900">
-                    {activeBidang.title}
-                  </h3>
+                  <span className="text-[11px] sm:text-xs font-mono text-white/50 tracking-widest uppercase group-hover:text-neutral-500 transition-colors">
+                    Divisi LDK
+                  </span>
                 </div>
 
-                <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed pt-1">
+                <div className="space-y-2 sm:space-y-3">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-white font-syne leading-tight group-hover:text-black transition-colors">
+                    {activeBidang.title}
+                  </h3>
+                  <p className="text-[11px] sm:text-xs md:text-sm font-medium text-white/90 font-syne tracking-wide uppercase group-hover:text-neutral-700 transition-colors">
+                    {activeBidang.tagline}
+                  </p>
+                </div>
+
+                <p className="text-white/80 text-xs sm:text-sm leading-relaxed font-inter group-hover:text-neutral-800 transition-colors">
                   {activeBidang.description}
                 </p>
               </div>
 
-              <div className="pt-2 sm:pt-4">
+              <div className="pt-6 sm:pt-8 relative z-10">
                 <a
                   href="#daftar"
-                  className="inline-flex items-center justify-center w-full sm:w-auto gap-2.5 bg-neutral-900 text-white px-5 py-2.5 sm:px-6 sm:py-3 rounded-full text-xs font-medium hover:bg-neutral-800 transition-colors group"
+                  className="inline-flex items-center justify-between w-full bg-white text-[#7b38f7] px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl text-xs sm:text-sm font-bold shadow-xl transition-all group/btn group-hover:bg-black group-hover:text-white"
                 >
-                  <span>Pilih Divisi Ini</span>
-                  <ArrowUpRight
-                    size={15}
-                    className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                  />
+                  <span>Gabung ke Divisi Ini</span>
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#7b38f7]/10 flex items-center justify-center transition-transform group-hover/btn:translate-x-1 group-hover:bg-white/10">
+                    <ArrowRight
+                      size={15}
+                      className="text-[#7b38f7] group-hover:text-white"
+                    />
+                  </div>
                 </a>
               </div>
             </div>
 
-            {/* Right Jobdesk Carousel Card */}
-            <div className="lg:col-span-6 bg-white border border-neutral-200/80 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl flex flex-col justify-between shadow-2xs relative overflow-hidden min-h-[240px] sm:min-h-[260px]">
-              {/* Carousel Header */}
-              <div className="flex items-center justify-between pb-2 border-b border-neutral-100">
-                <span className="text-[10px] sm:text-xs font-semibold text-neutral-400 uppercase tracking-wider">
-                  Fokus Jobdesk ({carouselIndex + 1}/
-                  {activeBidang.jobdesk.length})
-                </span>
-
-                {/* Navigasi Panah Carousel */}
-                <div className="flex items-center gap-1.5">
-                  <button
-                    onClick={handlePrev}
-                    aria-label="Previous jobdesk"
-                    className="p-1.5 rounded-full bg-slate-100 hover:bg-neutral-900 hover:text-white text-neutral-700 transition-colors active:scale-90"
-                  >
-                    <ChevronLeft size={16} />
-                  </button>
-                  <button
-                    onClick={handleNext}
-                    aria-label="Next jobdesk"
-                    className="p-1.5 rounded-full bg-slate-100 hover:bg-neutral-900 hover:text-white text-neutral-700 transition-colors active:scale-90"
-                  >
-                    <ChevronRight size={16} />
-                  </button>
-                </div>
-              </div>
-
-              {/* Carousel Slide Content with Drag/Swipe for Mobile */}
-              <div className="my-auto py-3 sm:py-4">
-                <AnimatePresence mode="wait">
+            {/* Right Stacked Jobdesk List Cards (Span 7) */}
+            <div className="lg:col-span-7 flex flex-col gap-3.5 sm:gap-4 justify-between">
+              {activeBidang.jobdesk.map((job, idx) => {
+                const JobIcon = job.icon;
+                return (
                   <motion.div
-                    key={carouselIndex}
-                    initial={{ opacity: 0, x: 20 }}
+                    key={idx}
+                    initial={{ opacity: 0, x: 16 }}
                     animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.2 }}
-                    drag="x"
-                    dragConstraints={{ left: 0, right: 0 }}
-                    dragElastic={0.2}
-                    onDragEnd={handleDragEnd}
-                    className="space-y-2.5 sm:space-y-3 cursor-grab active:cursor-grabbing touch-pan-y"
+                    transition={{
+                      duration: 0.3,
+                      delay: idx * 0.06,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className="bg-[#121212] border border-white/15 p-5 sm:p-6 rounded-3xl flex items-start gap-4 sm:gap-5 transition-all group relative overflow-hidden shadow-lg"
                   >
-                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-slate-100 border border-neutral-200/60 flex items-center justify-center text-neutral-900">
-                      <JobIcon size={18} />
+                    {/* Layer Efek Hover: Gelembung Air Menyatu ke Tengah */}
+                    <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl">
+                      <span className="absolute top-1/2 -left-[10%] -translate-y-1/2 w-[65%] h-[220%] bg-white rounded-[100%] scale-0 group-hover:scale-100 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] origin-left z-0" />
+                      <span className="absolute top-1/2 -right-[10%] -translate-y-1/2 w-[65%] h-[220%] bg-white rounded-[100%] scale-0 group-hover:scale-100 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] origin-right z-0" />
                     </div>
-                    <h4 className="text-base sm:text-lg font-semibold text-neutral-900 tracking-tight">
-                      {currentJob.title}
-                    </h4>
-                    <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-                      {currentJob.desc}
-                    </p>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
 
-              {/* Indicator Dots & Swipe Hint */}
-              <div className="flex items-center justify-between pt-2">
-                <div className="flex items-center gap-1.5">
-                  {activeBidang.jobdesk.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCarouselIndex(idx)}
-                      aria-label={`Go to slide ${idx + 1}`}
-                      className={`h-1.5 rounded-full transition-all ${
-                        idx === carouselIndex
-                          ? "w-5 sm:w-6 bg-neutral-900"
-                          : "w-1.5 bg-neutral-200 hover:bg-neutral-400"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <span className="text-[10px] text-neutral-400 sm:hidden">
-                  Geser untuk melihat &rarr;
-                </span>
-              </div>
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-white shrink-0 group-hover:scale-110 group-hover:bg-black group-hover:text-white transition-all relative z-10">
+                      <JobIcon size={20} className="sm:w-[22px] sm:h-[22px]" />
+                    </div>
+                    <div className="space-y-1 flex-1 relative z-10">
+                      <div className="flex items-center justify-between gap-2">
+                        <h4 className="text-sm sm:text-base font-bold text-white font-syne tracking-tight group-hover:text-black transition-colors">
+                          {job.title}
+                        </h4>
+                        <span className="text-[10px] sm:text-[11px] font-mono text-white/50 bg-white/5 px-2 py-0.5 rounded-full border border-white/10 group-hover:text-neutral-600 group-hover:bg-black/5 group-hover:border-black/10 transition-colors shrink-0">
+                          Fokus 0{idx + 1}
+                        </span>
+                      </div>
+                      <p className="text-[11px] sm:text-xs sm:text-sm text-white/80 leading-relaxed font-inter group-hover:text-neutral-700 transition-colors">
+                        {job.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
         </AnimatePresence>

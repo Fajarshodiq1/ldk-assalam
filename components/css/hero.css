@@ -1,0 +1,68 @@
+
+/* Animasi Marquee Jalan Kiri */
+@keyframes marquee {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Animasi Marquee Jalan Kanan */
+@keyframes marquee-reverse {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+.animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 25s linear infinite;
+}
+
+.animate-marquee-reverse {
+    display: flex;
+    width: max-content;
+    animation: marquee-reverse 25s linear infinite;
+}
+
+.animate-marquee:hover,
+.animate-marquee-reverse:hover {
+    animation-play-state: paused;
+}
+
+/* Potongan coakan sudut kanan bawah pada gambar */
+@media (min-width: 768px) {
+    .image-notch-cutout {
+        /* Memotong area sudut kanan bawah seluas 95px x 95px untuk tempat tombol */
+        clip-path: polygon(0 0,
+                100% 0,
+                100% calc(100% - 95px),
+                calc(100% - 95px) calc(100% - 95px),
+                calc(100% - 95px) 100%,
+                0 100%);
+    }
+}
+
+/* Lekukan halus cekung di bagian atas coakan */
+.notch-corner-top {
+    background: transparent;
+    border-bottom-right-radius: 16px;
+    box-shadow: 8px 8px 0 8px #7b38f7;
+    /* Mengikuti warna background hero */
+}
+
+/* Lekukan halus cekung di bagian kiri coakan */
+.notch-corner-left {
+    background: transparent;
+    border-bottom-right-radius: 16px;
+    box-shadow: 8px 8px 0 8px #7b38f7;
+    /* Mengikuti warna background hero */
+}
